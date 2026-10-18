@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#f3f6fc; --card:rgba(255,255,255,.72); --txt:#141a33; --mut:#5b6480;
+  --pri:#2f5bea; --pri2:#0fb0d8; --red:#dc241f; --yel:#ffc726; --line:rgba(20,26,51,.1);
+  --shadow:0 10px 30px rgba(30,50,120,.12);
+}
+[data-theme="dark"]{
+  --bg:#0d1224; --card:rgba(25,32,58,.75); --txt:#eef1ff; --mut:#a3accb;
+  --pri:#6b8bff; --pri2:#33c9ee; --line:rgba(255,255,255,.1); --shadow:0 10px 30px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--txt);background:var(--bg);line-height:1.6;overflow-x:hidden;transition:background .3s,color .3s}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(500px 400px at 5% 70%,rgba(220,36,31,.25),transparent 70%),
+             radial-gradient(600px 500px at 90% 40%,rgba(107,91,255,.28),transparent 70%),
+             radial-gradient(500px 400px at 100% 100%,rgba(255,199,38,.25),transparent 70%)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:auto;padding:0 20px}
+section{padding:80px 0}
+h2.title{text-align:center;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800}
+h2.title+.bar{width:60px;height:4px;border-radius:4px;margin:10px auto 8px;background:linear-gradient(90deg,var(--red),var(--pri))}
+.sub{text-align:center;color:var(--mut);margin-bottom:40px}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--card);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header::after{content:"";position:absolute;left:0;bottom:-1px;height:2px;width:var(--prog,0%);background:linear-gradient(90deg,var(--red),var(--yel),var(--pri))}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;letter-spacing:.5px}
+.logo svg{width:38px;height:20px;border-radius:2px}
+.logo b{color:var(--pri)}
+nav ul{display:flex;gap:22px;list-style:none;align-items:center}
+nav a{font-weight:600;font-size:.92rem;padding:6px 0;border-bottom:2px solid transparent}
+nav a.active,nav a:hover{color:var(--pri);border-color:var(--pri)}
+.tbtn{border:1px solid var(--line);background:var(--card);border-radius:12px;width:44px;height:40px;font-size:1.1rem;cursor:pointer}
+.burger{display:none;background:none;border:0;font-size:1.5rem;color:var(--txt);cursor:pointer}
+
+/* HERO */
+.banner{margin-top:64px;height:400px;position:relative;overflow:hidden}
+.banner svg{width:100%;height:100%;display:block}
+.hero{text-align:center;padding:0 0 70px;margin-top:-110px;position:relative}
+.avatar{width:210px;height:210px;margin:0 auto;border-radius:50%;padding:6px;position:relative;
+  background:conic-gradient(var(--pri),var(--pri2),var(--yel),var(--red),var(--pri));box-shadow:var(--shadow)}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:5px solid #fff;background:#dfe6f7}
+.avatar .badge{position:absolute;right:2px;bottom:12px;width:60px;height:60px;border-radius:50%;background:#fff;border:3px solid #fff;overflow:hidden;box-shadow:var(--shadow)}
+.avatar .badge svg{width:100%;height:100%}
+.hero h1{font-size:clamp(2.4rem,7vw,4.4rem);font-weight:800;line-height:1.1;margin-top:34px}
+.hero h1 span{display:block;background:linear-gradient(90deg,#b8a63a,#f59e0b,#ea580c,#dc241f,#be123c);-webkit-background-clip:text;background-clip:text;color:transparent;text-transform:uppercase}
+.role{color:var(--mut);font-size:1.3rem;margin-top:12px}
+.intro{max-width:560px;margin:14px auto 0;color:var(--mut)}
+.btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.btn{padding:14px 30px;border-radius:12px;font-weight:700;border:2px solid var(--pri);transition:.25s;cursor:pointer;display:inline-block}
+.btn.fill{background:linear-gradient(90deg,#4a4de6,var(--pri2));border-color:transparent;color:#fff;box-shadow:0 10px 24px rgba(47,91,234,.35)}
+.btn.line{color:var(--pri);background:rgba(255,255,255,.35)}
+.btn:hover{transform:translateY(-3px)}
+.stats{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 32px;min-width:140px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:1.8rem;color:var(--pri);line-height:1.2}
+.stat small{color:var(--mut)}
+
+/* WAVING FLAG */
+.flagbox{margin:50px auto 0;width:300px;text-align:center}
+.pole{display:flex;align-items:flex-start;gap:0;position:relative;height:190px}
+.pole::before{content:"";width:5px;height:190px;background:linear-gradient(#9fb2d6,#6f86b4);border-radius:3px}
+.pole::after{content:"";position:absolute;left:-4px;top:-6px;width:13px;height:13px;border-radius:50%;background:var(--yel)}
+.pole svg{width:250px;height:125px;margin-top:8px;transform-origin:left center;animation:wave 3s ease-in-out infinite;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25))}
+@keyframes wave{0%,100%{transform:skewY(-2deg) scaleX(1)}50%{transform:skewY(2deg) scaleX(.96)}}
+.flagbox p{font-weight:700;margin-top:6px}
+.flagbox i{display:block;width:80px;height:3px;margin:6px auto;background:linear-gradient(90deg,var(--pri),var(--red))}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);backdrop-filter:blur(8px);transition:.25s}
+.card:hover{transform:translateY(-4px)}
+.grid{display:grid;gap:22px}
+
+/* PERFIL */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.about dl{display:grid;grid-template-columns:130px 1fr;gap:10px 12px}
+.about dt{font-weight:700}
+.about dd{color:var(--mut)}
+.about h3,.edu h3{margin-bottom:14px}
+
+/* EDUKASAUN */
+.timeline{max-width:760px;margin:auto;border-left:3px solid var(--pri);padding-left:26px;display:grid;gap:22px}
+.edu{position:relative}
+.edu::before{content:"";position:absolute;left:-37px;top:30px;width:16px;height:16px;border-radius:50%;background:var(--yel);border:3px solid var(--pri)}
+.edu small{color:var(--pri);font-weight:700}
+.edu p{color:var(--mut)}
+
+/* ABILIDADE */
+.skills{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.skill{text-align:center;padding:22px 18px}
+.ico{width:54px;height:54px;border-radius:14px;margin:0 auto 12px;display:grid;place-items:center;font-size:1.5rem;background:rgba(47,91,234,.12)}
+.skill h4{font-size:1rem}
+.skill p{color:var(--mut);font-size:.85rem;margin:6px 0 14px;min-height:62px}
+.meter{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--red),var(--yel),#22a559,var(--pri));transition:width 1.2s ease}
+.skill b{display:block;margin-top:6px;font-size:.8rem;color:var(--pri)}
+
+/* PYTHON */
+.py{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+pre{background:#10162e;color:#d8e1ff;padding:20px;border-radius:14px;overflow-x:auto;font-size:.88rem;line-height:1.7}
+pre .k{color:#ff9ac1}pre .s{color:#a8e6a1}pre .c{color:#7d88b3}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips span{padding:6px 14px;border-radius:99px;background:rgba(47,91,234,.12);color:var(--pri);font-weight:600;font-size:.85rem}
+
+/* PROJETU */
+.projects{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.proj{display:flex;flex-direction:column;border-top:4px solid var(--pri)}
+.proj:nth-child(2){border-color:var(--pri2)}
+.proj:nth-child(3){border-color:var(--red)}
+.proj h3{margin:12px 0}
+.proj p,.proj li{color:var(--mut);font-size:.92rem;margin-bottom:8px}
+.proj ul{list-style:none;margin-top:6px}
+.proj .btn{margin-top:auto;align-self:flex-start;padding:10px 22px;font-size:.9rem}
+.proj .ico{margin:0}
+
+/* BLOG */
+.blog{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.post small{color:var(--pri);font-weight:700}
+.post h4{margin:6px 0}
+.post p{color:var(--mut);font-size:.9rem}
+
+/* KONTAKTU */
+.contact{max-width:760px;margin:auto;border-top:6px solid;border-image:linear-gradient(90deg,var(--red) 25%,var(--yel) 25% 50%,var(--pri2) 50% 75%,var(--pri) 75%) 1}
+.contact>p{text-align:center;color:var(--mut);margin-bottom:22px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.link{display:flex;align-items:center;gap:14px;padding:16px;border-radius:14px;background:rgba(47,91,234,.07);border:1px solid var(--line);transition:.2s}
+.link:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.link .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:1.3rem;flex:none}
+.link small{display:block;color:var(--mut);font-size:.78rem}
+.link b{word-break:break-all;font-size:.92rem}
+.divider{display:flex;align-items:center;gap:12px;margin:26px 0 18px;font-weight:700;font-size:.9rem}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.social{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.social .link{flex-direction:column;text-align:center;padding:22px 10px}
+.wa{background:#25d366}.em{background:#1a8cff}.fb{background:#1877f2}.ig{background:linear-gradient(45deg,#f9a825,#e1306c,#833ab4)}.gh{background:#161b22}
+
+footer{text-align:center;padding:30px 20px;color:var(--mut);border-top:1px solid var(--line);font-size:.9rem}
+.float{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:1.9rem;box-shadow:0 0 0 5px rgba(37,211,102,.3),var(--shadow)}
+.float:hover{transform:scale(1.08)}
+:focus-visible{outline:3px solid var(--pri2);outline-offset:2px}
+
+@media(max-width:860px){
+  .burger{display:block}
+  nav ul{position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--bg);padding:16px;gap:14px;border-bottom:1px solid var(--line);display:none}
+  nav ul.open{display:flex}
+  .about,.py,.row{grid-template-columns:1fr}
+  .social{grid-template-columns:1fr}
+  .banner{height:300px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Bandeira Timor-Leste (reuza ba fatin hotu) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="tl" viewBox="0 0 300 150" preserveAspectRatio="xMinYMid slice">
+    <rect width="300" height="150" fill="#dc241f"/>
+    <polygon points="0,0 150,75 0,150" fill="#ffc726"/>
+    <polygon points="0,0 100,75 0,150" fill="#000"/>
+    <polygon id="star" points="30,45 37,66 59,66 41,79 48,100 30,87 12,100 19,79 1,66 23,66" fill="#fff"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="logo"><svg><use href="#tl"/></svg><span>PORTO<b style="color:var(--txt)">FOLIO</b></span></a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#perfil">Perfil</a></li>
+        <li><a href="#edukasaun">Edukasaun</a></li>
+        <li><a href="#abilidade">Abilidade</a></li>
+        <li><a href="#python">Python</a></li>
+        <li><a href="#projetu">Projetu</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#kontaktu">Kontaktu</a></li>
+        <li><button class="tbtn" id="theme" aria-label="Troka mode">🌙</button></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Meñu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HOME -->
+<div id="home">
+  <div class="banner"><svg viewBox="0 0 300 150" preserveAspectRatio="xMinYMid slice"><use href="#tl"/></svg></div>
+  <div class="hero wrap">
+    <div class="avatar">
+      <img id="foto" alt="Foto perfil">
+      <div class="badge"><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><use href="#tl"/></svg></div>
+    </div>
+    <h1>Ola, Ha'u mak <span id="naran"></span></h1>
+    <p class="role">Web Developer • Designer • Blogger</p>
+    <p class="intro">Ha'u kria website modernu, sistema web no artigu blog ho dezeñu ne'ebé simples, lais no fasil atu uza.</p>
+    <div class="btns">
+      <a href="#projetu" class="btn fill">Haree Ha'u-nia Projetu</a>
+      <a href="#kontaktu" class="btn line">Kontaktu Ha'u</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10+</b><small>Abilidade</small></div>
+      <div class="stat"><b>4+</b><small>Sistema Web</small></div>
+      <div class="stat"><b>3+</b><small>Instituisaun</small></div>
+    </div>
+    <div class="flagbox">
+      <div class="pole"><svg viewBox="0 0 300 150"><use href="#tl"/></svg></div>
+      <p>Orgullu Timor-Leste</p><i></i>
+    </div>
+  </div>
+</div>
+
+<!-- PERFIL -->
+<section id="perfil"><div class="wrap">
+  <h2 class="title">Ha'u-nia Perfil</h2><div class="bar"></div>
+  <p class="sub">Informasaun badak kona-ba ha'u</p>
+  <div class="about">
+    <div class="card"><h3>Dadus Pesoal</h3>
+      <dl>
+        <dt>Naran</dt><dd id="p-naran"></dd>
+        <dt>Fatin moris</dt><dd id="p-fatin"></dd>
+        <dt>Profisaun</dt><dd>Web Developer</dd>
+        <dt>Lian</dt><dd>Tetun, Português, English</dd>
+      </dl>
+    </div>
+    <div class="card"><h3>Kona-ba Ha'u</h3>
+      <p style="color:var(--mut)">Ha'u gosta kria website no aplikasaun web. Ha'u hakarak uza teknolojia atu ajuda ema no instituisaun hadi'a sira-nia servisu loron-loron ho dalan ne'ebé simples no profisionál.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- EDUKASAUN -->
+<section id="edukasaun"><div class="wrap">
+  <h2 class="title">Edukasaun</h2><div class="bar"></div>
+  <p class="sub">Dalan estudu ne'ebé ha'u liu tiha ona</p>
+  <div class="timeline">
+    <div class="card edu"><small>2022 – Agora</small><h3>Naran Universidade / Instituto</h3><p>Kursu: Informátika / Tekniku Komputadór.</p></div>
+    <div class="card edu"><small>2019 – 2022</small><h3>Naran Eskola Sekundária</h3><p>Área estudu: Siénsia no Teknolojia.</p></div>
+    <div class="card edu"><small>2013 – 2019</small><h3>Naran Eskola Báziku</h3><p>Edukasaun báziku.</p></div>
+  </div>
+</div></section>
+
+<!-- ABILIDADE -->
+<section id="abilidade"><div class="wrap">
+  <h2 class="title">Ha'u-nia Abilidade</h2><div class="bar"></div>
+  <p class="sub">Teknolojia no habilidade sira ne'ebé ha'u uza</p>
+  <div class="grid skills" id="skills"></div>
+</div></section>
+
+<!-- PYTHON -->
+<section id="python"><div class="wrap">
+  <h2 class="title">Python</h2><div class="bar"></div>
+  <p class="sub">Ha'u uza Python ba programasaun no data</p>
+  <div class="py">
+<pre><span class="c"># Ezemplu: kalkula média nota estudante</span>
+<span class="k">def</span> media(notas):
+    <span class="k">return</span> sum(notas) / len(notas)
+
+estudante = {<span class="s">"naran"</span>: <span class="s">"Maria"</span>, <span class="s">"notas"</span>: [8, 9, 7]}
+print(estudante[<span class="s">"naran"</span>], media(estudante[<span class="s">"notas"</span>]))</pre>
+    <div class="card"><h3>Saida ha'u uza Python ba</h3>
+      <p style="color:var(--mut);margin-top:8px">Automatiza servisu, prosesa data, no kria lójika ba sistema.</p>
+      <div class="chips"><span>Automatizasaun</span><span>Análize Data</span><span>Script</span><span>Flask</span><span>Pandas</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PROJETU -->
+<section id="projetu"><div class="wrap">
+  <h2 class="title">Ha'u-nia Projetu</h2><div class="bar"></div>
+  <p class="sub">Projetu sira ne'ebé ha'u halo ona</p>
+  <div class="grid projects">
+    <article class="card proj">
+      <div class="ico"><i class="fa-solid fa-globe" style="color:var(--pri)"></i></div>
+      <h3>Website Pessoal</h3>
+      <p>Website portfolio mak website ida atu hatudu perfil, habilidade, no servisu ka projetu sira ne'ebé ita halo.</p>
+      <p>Nia objetivu mak atu ajuda ema seluk konhese ita nia kapasidade, esperiénsia, no rezultadu servisu iha forma simples no profisionál.</p>
+      <a href="#" class="btn fill">Visita Website</a>
+    </article>
+    <article class="card proj">
+      <div class="ico"><i class="fa-solid fa-pen-nib" style="color:#e07b00"></i></div>
+      <h3>Blog Pessoal</h3>
+      <p>Blog pessoal hau nian mak espasu ida atu fahe artigu, tutorial, no esperiénsia pessoal kona-ba estudu, teknolojia, no projetu sira ne'ebé hau aprende no halo.</p>
+      <ul>
+        <li><i class="fa-solid fa-user"></i> Naran: <span class="j-naran"></span></li>
+        <li><i class="fa-solid fa-envelope"></i> Email: <span class="j-email"></span></li>
+        <li><i class="fa-solid fa-phone"></i> Nu.tel: <span class="j-tel"></span></li>
+      </ul>
+      <a href="#blog" class="btn fill">Haree Blog</a>
+    </article>
+    <article class="card proj">
+      <div class="ico"><i class="fa-solid fa-laptop-code" style="color:var(--red)"></i></div>
+      <h3>Aplikasaun Web</h3>
+      <p>Aplikasaun web ba nesesidade edukasaun no negósiu.</p>
+      <ul>
+        <li><b>🎓 Sistema Biblioteka</b> – rejista livru, estudante, empréstimu no devolusaun livru.</li>
+        <li><b>📊 Sistema Gestão Estudante</b> – rejista no jere dadus estudante, turma no nota.</li>
+        <li><b>🗓️ Sistema Presensa</b> – rejista no kontrola presensa estudante kada loron.</li>
+        <li><b>🛒 Website Loja Online</b> – hatudu produtu no fasilita prosesu fa'an produtu online.</li>
+      </ul>
+      <a href="#" class="btn fill">Visita Aplikasaun</a>
+    </article>
+  </div>
+</div></section>
+
+<!-- BLOG -->
+<section id="blog"><div class="wrap">
+  <h2 class="title">Blog</h2><div class="bar"></div>
+  <p class="sub">Artigu no tutorial foun</p>
+  <div class="grid blog">
+    <article class="card post"><small>Tutorial</small><h4>Oinsá kria website uza HTML no CSS</h4><p>Pasu-pasu simples ba ema ne'ebé foin hahú.</p></article>
+    <article class="card post"><small>Teknolojia</small><h4>Dika báziku ba Python</h4><p>Hatene kona-ba variável, loop no funsaun.</p></article>
+    <article class="card post"><small>Esperiénsia</small><h4>Ha'u-nia dalan hanesan Web Developer</h4><p>Lia-menon no lisaun ne'ebé ha'u hetan.</p></article>
+  </div>
+</div></section>
+
+<!-- KONTAKTU -->
+<section id="kontaktu"><div class="wrap">
+  <h2 class="title">Kontaktu Ha'u</h2><div class="bar"></div>
+  <p class="sub">Mai ita halo ligasaun no servisu hamutuk</p>
+  <div class="card contact">
+    <p>Kontaktu ha'u diretamente liu husi WhatsApp, Facebook, Instagram, GitHub ka email. Klik ligasaun ida atu loke perfil ka haruka mensajen.</p>
+    <div class="row">
+      <a class="link" id="l-wa" target="_blank" rel="noopener"><span class="ic wa"><i class="fa-brands fa-whatsapp"></i></span><span><small>WhatsApp</small><b class="j-tel"></b></span></a>
+      <a class="link" id="l-em"><span class="ic em"><i class="fa-solid fa-envelope"></i></span><span><small>Email</small><b class="j-email"></b></span></a>
+    </div>
+    <div class="divider">Haree mos hau iha rede sosiál</div>
+    <div class="social">
+      <a class="link" id="l-fb" target="_blank" rel="noopener"><span class="ic fb"><i class="fa-brands fa-facebook-f"></i></span><span><b>Facebook</b><small>Tama ba perfil</small></span></a>
+      <a class="link" id="l-ig" target="_blank" rel="noopener"><span class="ic ig"><i class="fa-brands fa-instagram"></i></span><span><b>Instagram</b><small class="j-ig"></small></span></a>
+      <a class="link" id="l-gh" target="_blank" rel="noopener"><span class="ic gh"><i class="fa-brands fa-github"></i></span><span><b>GitHub</b><small class="j-gh"></small></span></a>
+    </div>
+  </div>
+</div></section>
+
+<footer>© <span id="yr"></span> <span class="j-naran"></span> • Orgullu Timor-Leste 🇹🇱</footer>
+
+<a class="float" id="l-wa2" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+/* ===== HADI'A DADUS IHA NEE'E ===== */
+const CFG = {
+  naran:  "NARAN KOMPLETU",          // naran iha hero (uza letra boot)
+  fatin:  "Naran Munisípiu, Timor-Leste",
+  foto:   "https://URL-FOTO-BA-IMAJEN.jpg",   // troka ho link foto
+  tel:    "+670 7000 0000",
+  wa:     "67070000000",              // nu.tel WhatsApp la iha + no espasu
+  email:  "emailbaita@gmail.com",
+  fb:     "https://facebook.com/USERNAME",
+  ig:     "username",
+  gh:     "username"
+};
+const SKILLS = [
+  ["fa-brands fa-html5","#e44d26","HTML","Kria estrutura website ne'ebé organiza.",90],
+  ["fa-brands fa-css3-alt","#2965f1","CSS","Halo website nia aparénsia sai modernu.",85],
+  ["fa-brands fa-js","#f0c000","JavaScript","Halo website sai interativu no dinámiku.",75],
+  ["fa-brands fa-php","#6c78af","PHP","Dezenvolve aplikasaun web iha server.",70],
+  ["fa-brands fa-python","#3776ab","Python","Uza Python ba programasaun no data.",70],
+  ["fa-solid fa-database","#2a7de1","Database","Jere no organiza dadus iha database.",75],
+  ["fa-solid fa-microchip","#334155","Hardware","Hadia laptop, komputadór no halo manutensaun hardware.",85],
+  ["fa-brands fa-windows","#0a8ad8","Instalasaun Windows","Instala no konfigura sistema operativu Windows.",90],
+  ["fa-solid fa-file-word","#d83b01","Microsoft Office","Instala no prepara Microsoft Office ba servisu eskritóriu.",90],
+  ["fa-solid fa-code","#1f6feb","Software","Instala, atualiza no konfigura programa komputadór.",85]
+];
+/* ================================== */
+
+const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
+$("#naran").textContent = CFG.naran;
+$("#p-naran").textContent = CFG.naran;
+$("#p-fatin").textContent = CFG.fatin;
+$$(".j-naran").forEach(e => e.textContent = CFG.naran);
+$$(".j-tel").forEach(e => e.textContent = CFG.tel);
+$$(".j-email").forEach(e => e.textContent = CFG.email);
+$$(".j-ig").forEach(e => e.textContent = "@" + CFG.ig);
+$$(".j-gh").forEach(e => e.textContent = "@" + CFG.gh);
+$("#yr").textContent = new Date().getFullYear();
+$("#foto").src = CFG.foto;
+$("#foto").onerror = function(){ this.onerror = null; this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect width='10' height='10' fill='%23dfe6f7'/%3E%3Ccircle cx='5' cy='4' r='2' fill='%2399a6c9'/%3E%3Cpath d='M1 10c0-3 2-4 4-4s4 1 4 4z' fill='%2399a6c9'/%3E%3C/svg%3E"; };
+const wa = "https://wa.me/" + CFG.wa;
+$("#l-wa").href = wa; $("#l-wa2").href = wa;
+$("#l-em").href = "mailto:" + CFG.email;
+$("#l-fb").href = CFG.fb;
+$("#l-ig").href = "https://instagram.com/" + CFG.ig;
+$("#l-gh").href = "https://github.com/" + CFG.gh;
+
+/* Abilidade */
+$("#skills").innerHTML = SKILLS.map(s => `
+  <div class="card skill">
+    <div class="ico"><i class="${s[0]}" style="color:${s[1]}"></i></div>
+    <h4>${s[2]}</h4><p>${s[3]}</p>
+    <div class="meter"><i data-w="${s[4]}"></i></div><b>${s[4]}%</b>
+  </div>`).join("");
+$$(".meter i").forEach(el => {
+  new IntersectionObserver((es, o) => es.forEach(e => {
+    if (e.isIntersecting) { el.style.width = el.dataset.w + "%"; o.disconnect(); }
+  }), {threshold:.4}).observe(el);
+});
+
+/* Meñu, scroll-spy, progress bar */
+const links = $$("#menu a[href^='#']"), secs = [...links].map(a => $(a.getAttribute("href")));
+addEventListener("scroll", () => {
+  const y = scrollY + 120;
+  let cur = 0; secs.forEach((s, i) => { if (s && s.offsetTop <= y) cur = i; });
+  links.forEach((a, i) => a.classList.toggle("active", i === cur));
+  const h = document.documentElement.scrollHeight - innerHeight;
+  $("header").style.setProperty("--prog", (scrollY / h * 100) + "%");
+}, {passive:true});
+$("#burger").onclick = () => $("#menu").classList.toggle("open");
+links.forEach(a => a.addEventListener("click", () => $("#menu").classList.remove("open")));
+
+/* Dark mode */
+const root = document.documentElement, tb = $("#theme");
+let dark = false;
+try { dark = localStorage.getItem("tema") === "dark"; } catch(e){}
+const apply = () => { root.dataset.theme = dark ? "dark" : "light"; tb.textContent = dark ? "☀️" : "🌙"; };
+apply();
+tb.onclick = () => { dark = !dark; apply(); try { localStorage.setItem("tema", dark ? "dark" : "light"); } catch(e){} };
+</script>
+</body>
+</html>
