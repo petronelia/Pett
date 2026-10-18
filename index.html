@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+
+/* General settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: #00bcd4;
+    --dark: #101820;
+    --light: #f5f8fc;
+    --text: #333;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Header and navigation */
+.header {
+    background: var(--dark);
+    color: white;
+    padding: 16px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 12px #0002;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span,
+.home-content h1 span,
+.section-title span {
+    color: var(--primary);
+}
+
+.navbar {
+    display: flex;
+    gap: 28px;
+}
+
+.nav-link {
+    color: white;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Home */
+.home {
+    min-height: 85vh;
+    padding: 70px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.subtitle {
+    color: #008b9d;
+    letter-spacing: 3px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.home-content h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.2;
+    margin: 15px 0;
+}
+
+.home-content h2 {
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.home-content p {
+    margin-bottom: 25px;
+}
+
+.home-image img {
+    width: 320px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 15px 15px 0 var(--primary);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--primary);
+    color: var(--dark);
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn:hover {
+    background: #00a0b5;
+    transform: translateY(-3px);
+}
+
+/* Common section */
+.section {
+    padding: 75px 10%;
+    scroll-margin-top: 75px;
+}
+
+.section-title {
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-description {
+    text-align: center;
+    margin: 0 auto 30px;
+    max-width: 600px;
+}
+
+/* About */
+.about {
+    background: white;
+}
+
+.about-content {
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+}
+
+.skills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.skills span {
+    background: #e0f8fb;
+    color: #006c7a;
+    padding: 9px 18px;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px #0002;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: #000e;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 42px;
+    cursor: pointer;
+}
+
+/* Contact */
+.contact {
+    background: white;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccd3db;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 2px solid var(--primary);
+    border-color: transparent;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    align-self: flex-start;
+}
+
+#form-status {
+    overflow-wrap: anywhere;
+}
+
+/* Footer */
+.footer {
+    padding: 25px 7%;
+    background: var(--dark);
+    color: white;
+    text-align: center;
+}
+
+.footer a {
+    display: inline-block;
+    color: var(--primary);
+    margin-top: 8px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .header {
+        padding: 15px 5%;
+    }
+
+    .home {
+        padding: 60px 7%;
+        gap: 35px;
+    }
+
+    .home-image img {
+        width: 260px;
+        height: 320px;
+    }
+
+    .section {
+        padding: 60px 7%;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+    .header {
+        padding: 14px 5%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--dark);
+        padding: 15px 5% 22px;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .navbar.open {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 12px 0;
+        border-bottom: 1px solid #ffffff20;
+    }
+
+    .home {
+        min-height: auto;
+        padding: 55px 7%;
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .home-image img {
+        width: 220px;
+        height: 260px;
+        margin: auto;
+        box-shadow: 9px 9px 0 var(--primary);
+    }
+
+    .home-content h1 {
+        font-size: 36px;
+    }
+
+    .home-content h2 {
+        font-size: 20px;
+    }
+
+    .section {
+        padding: 55px 7%;
+    }
+
+    .section-title {
+        font-size: 29px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .gallery-item {
+        height: 240px;
+    }
+
+    .contact-form .btn {
+        width: 100%;
+    }
+
+    .footer {
+        font-size: 14px;
+    }
+}
+
+/* Reduce motion when requested */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+
+
+/* Logo UNTL iha ninin header */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 44px;
+    width: auto;
+    border-radius: 6px;
+    background: white;
+    padding: 2px;
+}
+
+/* Imajen UNTL: hatudu kompletu, la tesi */
+.home-image img {
+    object-fit: contain;
+    background: white;
+}
+
+.gallery-item {
+    object-fit: contain;
+    background: white;
+    padding: 8px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header">
+        <a href="#home" class="logo"><img src="logo.jpg" alt="Logo UNTL" class="logo-img">My<span>Website</span></a>
+
+        <button class="menu-toggle"
+                id="menu-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="navbar">
+            ☰
+        </button>
+
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#about" class="nav-link">About Me</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Home -->
+    <section id="home" class="home">
+        <div class="home-content">
+            <p class="subtitle">WELCOME TO MY WEBSITE</p>
+            <h1>Hello, I'm <span>Your Name</span></h1>
+            <h2>Student | Web Developer</h2>
+            <p>
+                Welcome to my personal website.
+                Here you can learn about me, explore my gallery,
+                and contact me.
+            </p>
+            <a href="#about" class="btn">Discover More</a>
+        </div>
+
+        <div class="home-image">
+            <img src="logo.jpg" alt="Logo Universidade Nacional Timor Lorosa'e (UNTL)">
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" class="section about">
+        <h2 class="section-title">About <span>Me</span></h2>
+
+        <div class="about-content">
+            <p>
+                My name is Your Name. I am a student who is interested
+                in technology, programming, and web development.
+                I enjoy learning new things and creating useful
+                digital projects.
+            </p>
+
+            <div class="skills">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Creative Design</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section gallery">
+        <h2 class="section-title">My <span>Gallery</span></h2>
+        <p class="section-description">
+            Some pictures that inspire me.
+            Click any picture to view it larger.
+        </p>
+
+        <div class="gallery-grid">
+            <img src="logo.jpg"
+                 alt="Logo UNTL" class="gallery-item">
+
+            <img src="WhatsApp_Image_2026-09-17_at_20_42_09.jpeg"
+                 alt="Logo Fakuldade Engenharia, Ciência e Tecnologia UNTL" class="gallery-item">
+
+            <img src="1740389489699.jpg"
+                 alt="Logo Associação Académica Estudantil AAE-FECT-UNTL" class="gallery-item">
+        </div>
+    </section>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog"
+         aria-label="Enlarged gallery image" aria-modal="true" hidden>
+        <button class="lightbox-close" id="lightbox-close"
+                aria-label="Close image">&times;</button>
+        <img id="lightbox-image" src="" alt="">
+    </div>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+        <h2 class="section-title">Contact <span>Me</span></h2>
+        <p class="section-description">
+            Have a question? Send me a message.
+        </p>
+
+        <form id="contact-form" class="contact-form">
+            <input type="text" id="name"
+                   placeholder="Your Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Your Email" required>
+
+            <textarea id="message" rows="5"
+                      placeholder="Your Message" required></textarea>
+
+            <button type="submit" class="btn">Send Message</button>
+            <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> Your Name.
+           All Rights Reserved.</p>
+        <a href="#home">Back to Top ↑</a>
+    </footer>
+
+    <script>
+
+const menuToggle = document.getElementById("menu-toggle");
+const navbar = document.getElementById("navbar");
+const navLinks = document.querySelectorAll(".nav-link");
+
+// Open and close mobile menu
+menuToggle.addEventListener("click", () => {
+    const isOpen = navbar.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+// Close mobile menu after selecting a section
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        navbar.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+
+        navLinks.forEach(item => item.classList.remove("active"));
+        link.classList.add("active");
+    });
+});
+
+// Highlight the current section while scrolling
+const sections = document.querySelectorAll("section[id]");
+
+function updateActiveLink() {
+    let currentSection = "home";
+
+    sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 150) {
+            currentSection = section.id;
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === `#${currentSection}`
+        );
+    });
+}
+
+window.addEventListener("scroll", updateActiveLink);
+
+// Gallery lightbox
+const galleryItems = document.querySelectorAll(".gallery-item");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightbox-image");
+const lightboxClose = document.getElementById("lightbox-close");
+
+function openLightbox(image) {
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    lightboxClose.focus();
+}
+
+function closeLightbox() {
+    lightbox.hidden = true;
+    lightboxImage.src = "";
+    document.body.style.overflow = "";
+}
+
+galleryItems.forEach(image => {
+    image.addEventListener("click", () => openLightbox(image));
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", event => {
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !lightbox.hidden) {
+        closeLightbox();
+    }
+});
+
+// Contact form demo
+const contactForm = document.getElementById("contact-form");
+const formStatus = document.getElementById("form-status");
+
+contactForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    if (!name || !email || !message) {
+        formStatus.textContent = "Please complete all fields.";
+        return;
+    }
+
+    formStatus.textContent =
+        "Thank you, " + name +
+        "! Your form was validated successfully. " +
+        "This demo does not send messages to a server.";
+
+    contactForm.reset();
+});
+
+// Automatically display the current year
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+    </script>
+</body>
+</html>
